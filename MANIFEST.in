@@ -1,0 +1,2 @@
+graft clld_meta
+global-exclude *.py[co]
