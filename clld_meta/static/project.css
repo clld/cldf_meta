@@ -15,7 +15,8 @@
 
 .navbar .nav > li > a:hover {
     color: #000;
-    background: #efdcc8;
+    /* background: #efdcc8; */
+    background: #fff;
 }
 
 .navbar .nav > .active > a {
@@ -29,5 +30,6 @@
 }
 
 div.navbar-inner {
-    background: #feead4;
+    /* background: #feead4; */
+    background: #fff;
 }
