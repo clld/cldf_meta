@@ -1,19 +1,21 @@
 <%inherit file="../home_comp.mako"/>
 
 <%def name="sidebar()">
-    <div class="well">
-        <h3>Sidebar</h3>
-        <p>
-            Content
-        </p>
-    </div>
+  <img id="clld-meta-banner"
+       alt="clld-meta"
+       src="${request.static_url('clld_meta:static/clld-meta-banner.jpg')}" />
 </%def>
 
-<h2>Welcome to clld_meta</h2>
+<h2>Welcome to the CLLD Meta Beta</h2>
 
-<p class="lead">
-    Abstract.
-</p>
-<p>
-    More content.
-</p>
+This is a catalogue of known CLDF data sets.
+
+## catalogue of data sets
+## collected automatically from zenodo
+##
+
+<dl>
+  ## TODO: link to zenodo
+  <dt>Data on Github</dt>
+  <dd>${h.external_link('https://github.com/cldf-datasets/clld_meta')}</dd>
+</dl>

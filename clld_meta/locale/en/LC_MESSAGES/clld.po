@@ -1,17 +1,18 @@
-# Translations template for clld_meta.
+# English translations for clld_meta.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the clld_meta project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: clld_meta 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-11 09:54+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-01-15 12:22+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +20,11 @@ msgstr ""
 
 #: clld_meta/__init__.py:20
 msgid "Contribution"
-msgstr ""
+msgstr "Zenodo Record"
 
 #: clld_meta/__init__.py:21
 msgid "Contributions"
-msgstr ""
+msgstr "Zenodo Records"
 
 #: clld_meta/__init__.py:22
 msgid "CLDF Dataset"
@@ -43,9 +44,9 @@ msgstr ""
 
 #: clld_meta/__init__.py:26
 msgid "Unit"
-msgstr ""
+msgstr "Dataset Language"
 
 #: clld_meta/__init__.py:27
 msgid "Units"
-msgstr ""
+msgstr "Dataset Languages"
 

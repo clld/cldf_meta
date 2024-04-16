@@ -11,20 +11,21 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
     ],
-    author='',
-    author_email='',
-    url='',
+    author='Johannes Englisch',
+    author_email='johannes_englisch@t-online.de',
+    url='meta.clld.org',
     keywords='web pyramid pylons',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         'clld',
-
+        'clld-glottologfamily-plugin',
         'clldmpg',
-
-],
-extras_require={
+        'psycopg2',
+        'pycldf[catalogs]',
+    ],
+    extras_require={
         'dev': ['flake8', 'waitress'],
         'test': [
             'mock',
@@ -39,6 +40,6 @@ extras_require={
     },
     test_suite="clld_meta",
     entry_points="""\
-    [paste.app_factory]
-    main = clld_meta:main
-""")
+        [paste.app_factory]
+        main = clld_meta:main
+    """)
