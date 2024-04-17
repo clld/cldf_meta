@@ -1,11 +1,5 @@
 <%inherit file="../home_comp.mako"/>
 
-<%def name="sidebar()">
-  <img id="clld-meta-banner"
-       alt="clld-meta"
-       src="${request.static_url('clld_meta:static/clld-meta-banner.jpg')}" />
-</%def>
-
 <h2>Welcome to the CLLD Meta Beta</h2>
 
 This is a catalogue of known CLDF data sets.
