@@ -5,7 +5,7 @@
 <p>
   This is a catalogue of known
   ${h.external_link('https://cldf.clld.org', label='CLDF')}
-  data sets, which have been released on
+  data sets which have been released on
   ${h.external_link('https://zenodo.org', label='Zenodo')}.
 </p>
 
