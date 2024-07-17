@@ -11,6 +11,10 @@
   <dd>${h.external_link(f'https://doi.org/{ctx.doi}', label=ctx.doi)}</dd>
   <dt>Zenodo concept</dt>
   <dd>${h.link(request, ctx.concept)}</dd>
+  % if ctx.github_link:
+  <dt>GitHub link:</dt>
+  <dd>${h.external_link(ctx.github_link)}"</dd>
+  % endif
 </dl>
 
 <%def name="sidebar()">
