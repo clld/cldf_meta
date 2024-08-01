@@ -200,16 +200,16 @@ class DatasetLangs(datatables.Units):
             model_col=common.Language.name,
             get_object=lambda o: o.language)
         value_count = CountCol(
-            self, 'value_count', sTitle='#&#160;1Values',
+            self, 'value_count', sTitle='#&#160;Values',
             model_col=models.DatasetLang.value_count)
         form_count = CountCol(
-            self, 'form_count', sTitle='#&#160;1Forms',
+            self, 'form_count', sTitle='#&#160;Forms',
             model_col=models.DatasetLang.form_count)
         entry_count = CountCol(
-            self, 'entry_count', sTitle='#&#160;1Entries',
+            self, 'entry_count', sTitle='#&#160;Entries',
             model_col=models.DatasetLang.entry_count)
         example_count = CountCol(
-            self, 'example_count', sTitle='#&#160;1Examples',
+            self, 'example_count', sTitle='#&#160;Examples',
             model_col=models.DatasetLang.example_count)
         if self.language:
             module = Col(
