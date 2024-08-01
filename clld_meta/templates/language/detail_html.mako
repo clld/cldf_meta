@@ -6,8 +6,8 @@
 
 <h2>${_('Language')} ${ctx.name}</h2>
 
-${request.get_datatable('units', m.DatasetLang, language=ctx).render()}
-
 <%def name="sidebar()">
     ${util.language_meta()}
 </%def>
+
+${request.get_datatable('units', m.DatasetLang, language=ctx).render()}

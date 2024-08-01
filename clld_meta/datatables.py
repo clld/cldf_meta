@@ -186,7 +186,9 @@ class DatasetLangs(datatables.Units):
             query = query.filter(
                 models.DatasetLang.cldfdataset_pk == self.cldfdataset.pk)
         else:
-            query = query.join(models.CLDFDataset)
+            query = query\
+                .join(models.DatasetLang.cldfdataset)\
+                .join(models.CLDFDataset.contribution)
         return query
 
     def col_defs(self):
@@ -195,6 +197,10 @@ class DatasetLangs(datatables.Units):
             self, 'dataset',
             model_col=models.CLDFDataset.id,
             get_object=lambda o: o.cldfdataset)
+        record = LinkCol(
+            self, 'zenodo_record',
+            model_col=models.ZenodoRecord.name,
+            get_object=lambda o: o.cldfdataset.contribution)
         language = LinkCol(
             self, 'language',
             model_col=common.Language.name,
@@ -216,14 +222,14 @@ class DatasetLangs(datatables.Units):
                 self, 'module', model_col=models.CLDFDataset.module,
                 get_object=lambda o: o.cldfdataset)
             return [
-                dataset, module, value_count, form_count, entry_count,
+                dataset, record, module, value_count, form_count, entry_count,
                 example_count]
         elif self.cldfdataset:
             return [
                 language, value_count, form_count, entry_count, example_count]
         else:
             return [
-                dataset, language, value_count, form_count, entry_count,
+                dataset, record, language, value_count, form_count, entry_count,
                 example_count]
 
 
