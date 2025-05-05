@@ -1,6 +1,6 @@
 <%inherit file="../home_comp.mako"/>
 
-<h2>Welcome to the CLLD Meta Beta</h2>
+<h2>Welcome to the clld Meta Beta</h2>
 
 <p>
   This is a catalogue of known
