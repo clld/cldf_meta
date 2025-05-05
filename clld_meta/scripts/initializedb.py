@@ -1,5 +1,6 @@
 import collections
 import unicodedata
+import sys
 
 import sqlalchemy
 
@@ -75,15 +76,28 @@ def make_contributors(cldf_contributions):
         for person_id, name in people_collector.people.items()}
 
 
+def get_languoid(languoids, glottocode):
+    if (languoid := languoids.get(glottocode)):
+        return languoid
+    else:
+        print(
+            'glottocode not in glottolog:', glottocode,
+            '(is glottolog up-to-date?)',
+            file=sys.stderr)
+        return None
+
+
 def make_languages(cldf_languages, languoids):
     return {
         cldf_language['ID']: models.Variety(
             id=cldf_language['ID'],
-            glottolog_id=(glottocode := cldf_language['Glottocode']),
-            name=(languoid := languoids[glottocode]).name,
+            glottolog_id=glottocode,
+            name=languoid.name,
             latitude=languoid.latitude,
             longitude=languoid.longitude)
-        for cldf_language in cldf_languages.values()}
+        for cldf_language in cldf_languages.values()
+        if (glottocode := cldf_language.get('Glottocode'))
+        and (languoid := get_languoid(languoids, glottocode))}
 
 
 def make_contributions(cldf_contributions, zenodo_concepts):
@@ -156,17 +170,29 @@ def make_datasets(cldf_datasets, contributions):
         for cldf_dataset in cldf_datasets}
 
 
+def get_language(languages, id_):
+    if (lg := languages.get(id_)):
+        return lg
+    else:
+        print(
+            'language not found:', id_,
+            '(is glottolog up-to-date?)',
+            file=sys.stderr)
+        return None
+
+
 def iter_dataset_languages(cldf_datasetlangs, datasets, languages):
     return (
         models.DatasetLang(
             id=assoc[CLDF_ID],
-            language_pk=languages[assoc[CLDF_LANG_ID]].pk,
+            language_pk=language.pk,
             cldfdataset_pk=datasets[assoc['Dataset_ID']].pk,
             value_count=assoc['Value_Count'],
             form_count=assoc['Form_Count'],
             entry_count=assoc['Entry_Count'],
             example_count=assoc['Example_Count'])
-        for assoc in cldf_datasetlangs)
+        for assoc in cldf_datasetlangs
+        if (language := get_language(languages, assoc[CLDF_LANG_ID])))
 
 
 def main(args):
