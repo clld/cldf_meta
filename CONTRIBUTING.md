@@ -6,7 +6,7 @@ Install the development environment:
 ```sh
 $ pip install virtualenv  # might require sudo/admin privileges
 $ git clone https://github.com/clld/clld.git  # you may also clone a suitable fork
-$ cd clld_meta
+$ cd cldf_meta
 $ python -m virtualenv .venv
 $ source .venv/bin/activate  # Windows: .venv\Scripts\activate.bat
 $ pip install -r requirements.txt  # installs the cloned version with dev-tools in development mode
@@ -16,7 +16,7 @@ Then create a database:
 
 ```sh
 $ su - postgres
-$ createdb clld_meta
+$ createdb cldf_meta
 ```
 
 and initialize it, either

@@ -1,11 +1,11 @@
-# English translations for clld_meta.
+# English translations for cldf_meta.
 # Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the clld_meta project.
+# This file is distributed under the same license as the cldf_meta project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: clld_meta 0.0\n"
+"Project-Id-Version: cldf_meta 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-11 09:54+0000\n"
 "PO-Revision-Date: 2024-01-15 12:22+0100\n"
@@ -18,35 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: clld_meta/__init__.py:20
+#: cldf_meta/__init__.py:20
 msgid "Contribution"
 msgstr "Zenodo Record"
 
-#: clld_meta/__init__.py:21
+#: cldf_meta/__init__.py:21
 msgid "Contributions"
 msgstr "Zenodo Records"
 
-#: clld_meta/__init__.py:22
+#: cldf_meta/__init__.py:22
 msgid "CLDF Dataset"
 msgstr ""
 
-#: clld_meta/__init__.py:23 clld_meta/__init__.py:74
+#: cldf_meta/__init__.py:23 cldf_meta/__init__.py:74
 msgid "CLDF Datasets"
 msgstr ""
 
-#: clld_meta/__init__.py:24
+#: cldf_meta/__init__.py:24
 msgid "Zenodo Concept"
 msgstr ""
 
-#: clld_meta/__init__.py:25 clld_meta/__init__.py:72
+#: cldf_meta/__init__.py:25 cldf_meta/__init__.py:72
 msgid "Zenodo Concepts"
 msgstr ""
 
-#: clld_meta/__init__.py:26
+#: cldf_meta/__init__.py:26
 msgid "Unit"
 msgstr "Dataset Language"
 
-#: clld_meta/__init__.py:27
+#: cldf_meta/__init__.py:27
 msgid "Units"
 msgstr "Dataset Languages"
 

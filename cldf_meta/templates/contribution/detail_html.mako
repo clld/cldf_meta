@@ -1,7 +1,7 @@
 <%inherit file="../${context.get('request').registry.settings.get('clld.app_template', 'app.mako')}"/>
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "contributions" %>
-<%! import clld_meta.models as m %>
+<%! import cldf_meta.models as m %>
 
 <h2>${_('Contribution')} ${ctx.name}</h2>
 <dl>

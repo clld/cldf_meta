@@ -2,7 +2,7 @@
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "languages" %>
 <%block name="title">${_('Language')} ${ctx.name}</%block>
-<%! import clld_meta.models as m %>
+<%! import cldf_meta.models as m %>
 
 <h2>${_('Language')} ${ctx.name}</h2>
 

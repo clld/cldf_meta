@@ -18,7 +18,7 @@ from clld.db.meta import Base, CustomModelMixin, PolymorphicBaseMixin
 from clld.db.models import common
 from clld_glottologfamily_plugin.models import HasFamilyMixin
 
-from clld_meta.interfaces import ICLDFDataset, IZenodoConcept
+from cldf_meta.interfaces import ICLDFDataset, IZenodoConcept
 
 
 @implementer(ICLDFDataset)

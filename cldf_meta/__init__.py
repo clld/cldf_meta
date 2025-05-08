@@ -9,8 +9,8 @@ from clld_glottologfamily_plugin import util
 from clldutils.svg import pie, icon, data_url
 
 # we must make sure custom models are known at database initialization!
-from clld_meta import models
-from clld_meta.interfaces import ICLDFDataset, IZenodoConcept
+from cldf_meta import models
+from cldf_meta.interfaces import ICLDFDataset, IZenodoConcept
 
 
 _ = lambda s: s

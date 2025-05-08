@@ -1,2 +1,2 @@
-graft clld_meta
+graft cldf_meta
 global-exclude *.py[co]

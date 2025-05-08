@@ -7,7 +7,7 @@ from clld.web.datatables.contribution import ContributorsCol
 from clld.web.util.helpers import external_link, link
 from clld_glottologfamily_plugin.datatables import FamilyCol
 
-from clld_meta import models
+from cldf_meta import models
 
 
 # Columns

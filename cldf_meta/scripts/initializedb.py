@@ -12,7 +12,7 @@ from clld_glottologfamily_plugin.util import load_families
 import cldfcatalog
 from pyglottolog import Glottolog
 
-from clld_meta import models
+from cldf_meta import models
 
 CLDF_ID = 'http://cldf.clld.org/v1.0/terms.rdf#id'
 CLDF_NAME = 'http://cldf.clld.org/v1.0/terms.rdf#name'
@@ -234,7 +234,7 @@ def main(args):
     # populate database
 
     dataset = common.Dataset(
-        id='clld_meta',
+        id='cldf_meta',
         name='CLLD Meta',
         contact='johannes_englisch@eva.mpg.de',
         domain='meta.clld.org',

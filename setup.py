@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='clld_meta',
+    name='cldf_meta',
     version='0.0',
-    description='clld_meta',
+    description='cldf_meta',
     classifiers=[
         "Programming Language :: Python",
         "Framework :: Pyramid",
@@ -19,6 +19,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'SQLAlchemy<2.0,>=1.4',  # be explicit about sqlalchemy version
         'clld',
         'clld-glottologfamily-plugin',
         'clldmpg',
@@ -38,8 +39,8 @@ setup(
             'zope.component>=3.11.0',
         ],
     },
-    test_suite="clld_meta",
+    test_suite="cldf_meta",
     entry_points="""\
         [paste.app_factory]
-        main = clld_meta:main
+        main = cldf_meta:main
     """)
