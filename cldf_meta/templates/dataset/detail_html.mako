@@ -23,7 +23,7 @@
 <p>
   Eventually this project will be released on Zenodo and get properly versioned
   DOIs.
-  Until then the following BibTeX snippet can serve as a possible iternim
+  Until then the following BibTeX snippet can serve as a possible interim
   citation:
 </p>
 
