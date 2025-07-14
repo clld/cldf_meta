@@ -13,7 +13,7 @@ from cldf_meta import models
 from cldf_meta.interfaces import ICLDFDataset, IZenodoConcept
 
 
-_ = lambda s: s
+_ = lambda s: s  # noqa
 _('Contribution')
 _('Contributions')
 _('CLDF Dataset')
@@ -47,7 +47,7 @@ class LanguageByFamilyMapMarker(util.LanguageByFamilyMapMarker):
                 v.domainelement.jsondata['icon']
                 for v in ctx.values
                 if v.domainelement]
-            # FIXME this only shows the *first* value
+            # FIXME(johannes): this only shows the *first* value
             return icons[0] if len(icons) > 0 else None
         elif IDomainElement.providedBy(ctx):
             return ctx.jsondata['icon']
@@ -57,7 +57,7 @@ class LanguageByFamilyMapMarker(util.LanguageByFamilyMapMarker):
             return super().get_icon(ctx, req)
 
 
-def main(global_config, **settings):
+def main(_global_config, **settings):
     """This function returns a Pyramid WSGI application."""
     config = Configurator(settings=settings)
     config.include('clld.web.app')

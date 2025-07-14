@@ -33,7 +33,7 @@ def make_zenodo_concepts(cldf_contributions):
     zenodo_concepts = {}
     # use info from the most recent record of a concept
     for contrib in sorted(
-        cldf_contributions, key=lambda c: -int(c['Zenodo_ID'])
+        cldf_contributions, key=lambda c: -int(c['Zenodo_ID']),
     ):
         concept_id = contrib['Concept_ID']
         if concept_id not in zenodo_concepts:
@@ -137,11 +137,11 @@ def iter_record_contributors(cldf_contributions, contributions, contributors):
         models.RecordContributor(
             contribution_pk=contributions[contrib_id].pk,
             contributor_pk=contributors[name].pk,
-            ord=ord,
+            ord=nr,
             primary=role == 'creator',
             role=role)
         for contrib_id, contrib_people in contributor_mapping.items()
-        for ord, (name, role) in enumerate(contrib_people, 1))
+        for nr, (name, role) in enumerate(contrib_people, 1))
 
 
 def make_datasets(cldf_datasets, contributions):

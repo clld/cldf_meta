@@ -1,20 +1,14 @@
 from zope.interface import implementer
 from sqlalchemy import (
     Column,
-    String,
     Unicode,
-    Date,
     Integer,
-    Boolean,
     ForeignKey,
-    UniqueConstraint,
 )
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declared_attr
-from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import relationship
 
 from clld import interfaces
-from clld.db.meta import Base, CustomModelMixin, PolymorphicBaseMixin
+from clld.db.meta import Base, CustomModelMixin
 from clld.db.models import common
 from clld_glottologfamily_plugin.models import HasFamilyMixin
 

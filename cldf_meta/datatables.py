@@ -79,7 +79,7 @@ class UnitCol(Col):
 
     """Column which renders a link."""
 
-    def get_attrs(self, item):
+    def get_attrs(self, _item):
         return {}
 
     def format(self, item):
@@ -103,12 +103,12 @@ class CLDFDatasets(DataTable):
         return query
 
     def col_defs(self):
-        # FIXME: not happy with that...
+        # FIXME(johannes): not happy with that...
         #  * ord needs a better name ('number'? 'revision'?)
         #    ^ maybe i should just show the *version number*
         #    ^ nah, that doesn't work -- ord is about multiple datasets in *the
         #      same record*
-        ord = OrdCol(self, 'ord')
+        ord_col = OrdCol(self, 'ord')
         module = Col(self, 'module')
         language_count = CountCol(
             self, 'language_count', sTitle='#&#160;Languages',
@@ -133,15 +133,16 @@ class CLDFDatasets(DataTable):
             model_col=models.CLDFDataset.example_count)
         if self.contribution:
             return [
-                ord, module, language_count, glottocode_count, parameter_count,
-                value_count, form_count, entry_count, example_count]
+                ord_col, module, language_count, glottocode_count,
+                parameter_count, value_count, form_count, entry_count,
+                example_count]
         else:
             contribution = LinkCol(
                 self, 'contribution',
                 model_col=common.Contribution.name,
                 get_object=lambda o: o.contribution)
             return [
-                contribution, ord, module, language_count, glottocode_count,
+                contribution, ord_col, module, language_count, glottocode_count,
                 parameter_count, value_count, form_count, entry_count,
                 example_count]
 
