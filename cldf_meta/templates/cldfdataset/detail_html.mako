@@ -6,7 +6,7 @@
 
 <div>
   <dt>${_('Contribution')}</dt>
-  <dd>${h.link(request, ctx.contribution)}</dd>
+  <dd>${h.link(request, ctx.contribution)} (${ctx.contribution.version})</dd>
   <dt>Number</dt>
   <dd>${ctx.ord}</dd>
 </div>

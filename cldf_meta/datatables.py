@@ -5,6 +5,7 @@ from clld.web import datatables
 from clld.web.datatables.base import LinkCol, Col, LinkToMapCol, DataTable
 from clld.web.datatables.contribution import ContributorsCol
 from clld.web.util.helpers import external_link, link
+from clld.web.util.htmllib import HTML
 from clld_glottologfamily_plugin.datatables import FamilyCol
 
 from cldf_meta import models
@@ -25,6 +26,14 @@ class CountCol(Col):
         return case(
             [(self.model_col.is_(None), 0)],
             else_=self.model_col)
+
+
+class ContributionCol(LinkCol):
+    def format(self, item):
+        obj = self.get_obj(item)
+        return HTML.span(
+            link(self.dt.req, obj, label=obj.name),
+            f' ({obj.version})')
 
 
 class OrdCol(Col):
@@ -108,7 +117,7 @@ class CLDFDatasets(DataTable):
         #    ^ maybe i should just show the *version number*
         #    ^ nah, that doesn't work -- ord is about multiple datasets in *the
         #      same record*
-        ord_col = OrdCol(self, 'ord')
+        ord_col = OrdCol(self, 'ord', sTitle='Number')
         module = Col(self, 'module')
         language_count = CountCol(
             self, 'language_count', sTitle='#&#160;Languages',
@@ -137,7 +146,7 @@ class CLDFDatasets(DataTable):
                 parameter_count, value_count, form_count, entry_count,
                 example_count]
         else:
-            contribution = LinkCol(
+            contribution = ContributionCol(
                 self, 'contribution',
                 model_col=common.Contribution.name,
                 get_object=lambda o: o.contribution)
