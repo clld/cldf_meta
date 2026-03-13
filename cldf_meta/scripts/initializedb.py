@@ -108,7 +108,7 @@ def make_contributions(cldf_contributions, zenodo_concepts):
             name=contrib[CLDF_NAME],
             concept_pk=zenodo_concepts[contrib['Concept_ID']].pk,
             description=contrib[CLDF_DESC],
-            version=contrib['Version'],
+            version=contrib.get('Version'),
             doi=contrib['DOI'],
             date=contrib['Date'],
             license=contrib['License'],
