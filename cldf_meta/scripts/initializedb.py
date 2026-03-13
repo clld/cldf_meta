@@ -1,6 +1,7 @@
 import collections
 import unicodedata
 import sys
+from itertools import chain
 
 import sqlalchemy
 
@@ -24,9 +25,9 @@ CLDF_LANG_ID = 'http://cldf.clld.org/v1.0/terms.rdf#languageReference'
 
 def slug(s):
     return ''.join(
-        norm
-        for c in unicodedata.normalize('NFKD', s)
-        if (norm := c.lower()) in 'abcdefghijklmnopqrstuvwxyz0123456789')
+        c
+        for c in unicodedata.normalize('NFKD', s).lower()
+        if c in 'abcdefghijklmnopqrstuvwxyz0123456789 -_')
 
 
 def make_zenodo_concepts(cldf_contributions):
@@ -45,35 +46,24 @@ def make_zenodo_concepts(cldf_contributions):
     return zenodo_concepts
 
 
-class PeopleCollector:
-    def __init__(self):
-        self.people = {}
-
-    def add_name(self, name):
-        id_base = slug(name)
-        id_number = 1
-        id_candidate = id_base
-        while True:
-            if id_candidate not in self.people:
-                self.people[id_candidate] = name
-                return
-            elif self.people[id_candidate] == name:
-                return
-            else:
-                id_number += 1
-                id_candidate = f'{id_candidate}-{id_number}'
-
-
 def make_contributors(cldf_contributions):
-    people_collector = PeopleCollector()
+    # NOTE(johannes): The usual caveats to naive name handling apply:
+    #  * people with the same name are considered the same person
+    #  * a person with changing names, spelling variants, etc. is considered
+    #    multiple people
+    people = collections.defaultdict(set)
+    people[slug('Johannes Englisch')].add('Johannes Englisch')
     for contribution in cldf_contributions:
         for name in contribution.get('Creators', ()):
-            people_collector.add_name(name)
+            people[slug(name).replace(' ', '-')].add(name)
         for name in contribution.get('Contributors', ()):
-            people_collector.add_name(name)
+            people[slug(name).replace(' ', '-')].add(name)
     return {
-        name: common.Contributor(id=person_id, name=name)
-        for person_id, name in people_collector.people.items()}
+        name: common.Contributor(
+            id=f'{person_id}-{number}' if len(names) > 1 else person_id,
+            name=name)
+        for person_id, names in people.items()
+        for number, name in enumerate(sorted(names))}
 
 
 def get_languoid(languoids, glottocode):
@@ -261,6 +251,10 @@ def main(args):
     DBSession.add_all(languages.values())
 
     DBSession.flush()
+
+    DBSession.add(common.Editor(
+        dataset_pk=dataset.pk,
+        contributor_pk=contributors['Johannes Englisch'].pk))
 
     # :D
     DBSession.execute(sqlalchemy.text("""
