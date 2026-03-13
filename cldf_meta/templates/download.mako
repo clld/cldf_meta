@@ -17,7 +17,7 @@
 ${util.dataset_download()}
 % else:
 <p>
-  You can find the latest development version of the <em>CLLD Meta</em> data
+  You can find the latest development version of the data
   ${h.external_link('https://github.com/cldf-datasets/cldf_meta', label='on GitHub')}
 </p>
 % endif

@@ -235,7 +235,7 @@ def main(args):
 
     dataset = common.Dataset(
         id='cldf_meta',
-        name='CLLD Meta',
+        name='CLDF Meta',
         contact='johannes_englisch@eva.mpg.de',
         domain='meta.clld.org',
         publisher_name="Max Planck Institute for Evolutionary Anthropology",
