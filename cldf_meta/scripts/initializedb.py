@@ -92,19 +92,19 @@ def make_languages(cldf_languages, languoids):
 
 def make_contributions(cldf_contributions, zenodo_concepts):
     return {
-        contrib[CLDF_ID]:
-        models.ZenodoRecord(
+        contrib[CLDF_ID]: models.ZenodoRecord(
             id=contrib[CLDF_ID],
             name=contrib[CLDF_NAME],
             concept_pk=zenodo_concepts[contrib['Concept_ID']].pk,
             description=contrib[CLDF_DESC],
             version=contrib.get('Version'),
             doi=contrib['DOI'],
-            date=contrib['Date'],
+            date=contrib['Date_Created'],
+            date_updated=contrib['Date_Updated'],
             license=contrib['License'],
             zenodo_link=contrib['Zenodo_Link'],
             zenodo_id=contrib['Zenodo_ID'],
-            zenodo_keyword=contrib['Zenodo_Keyword'],
+            zenodo_keyword=contrib['Zenodo_Keywords'],
             zenodo_type=contrib['Zenodo_Type'],
             github_link=contrib['GitHub_Link'])
         for contrib in cldf_contributions}
@@ -117,7 +117,7 @@ def iter_record_contributors(cldf_contributions, contributions, contributors):
         for name in contrib.get('Creators', ()):
             if (name, 'creator') not in contrib_people:
                 contrib_people.append((name, 'creator'))
-        for name in contrib.get('Contributors', ()):
+        for name in contrib.get('Contributor') or ():
             if ((name, 'creator') not in contrib_people
                 and (name, 'contributor') not in contrib_people
             ):
@@ -195,9 +195,9 @@ def main(args):
     cldf_contributions = list(args.cldf.iter_rows(
         'ContributionTable',
         CLDF_ID, CLDF_NAME, CLDF_DESC, 'Concept_ID', 'Concept_DOI',
-        'Contributors', 'Creators', 'DOI', 'Date', 'GitHub_Link', 'License',
-        'Version', 'Zenodo_ID', 'Zenodo_Keyword', 'Zenodo_Link', 'Zenodo_Type',
-        'Concept_DOI',
+        'Communities', 'Contributors', 'Creators', 'DOI', 'Date_Created',
+        'Date_Updated', 'GitHub_Link', 'License', 'Version', 'Zenodo_ID',
+        'Zenodo_Keywords', 'Zenodo_Link', 'Zenodo_Type', 'Concept_DOI',
     ))
     cldf_languages = {
         cldf_language[CLDF_GLOTTOCODE]:

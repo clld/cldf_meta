@@ -66,6 +66,7 @@ class ZenodoRecord(CustomModelMixin, common.Contribution):
     concept_pk = Column(Integer, ForeignKey('zenodoconcept.pk'))
     concept = relationship('ZenodoConcept', backref='contributions')
 
+    date_updated = Column(Unicode)
     version = Column(Unicode)
     doi = Column(Unicode)
     license = Column(Unicode)
