@@ -58,6 +58,7 @@ class Variety(CustomModelMixin, common.Language, HasFamilyMixin):
 class ZenodoConcept(Base, common.IdNameDescriptionMixin):
     doi = Column(Unicode)
     zenodo_link = Column(Unicode)
+    zenodo_id = Column(Unicode)
 
 
 @implementer(interfaces.IContribution)

@@ -13,7 +13,7 @@
   <dd>${h.link(request, ctx.concept)}</dd>
   % if ctx.github_link:
   <dt>GitHub link:</dt>
-  <dd>${h.external_link(ctx.github_link)}"</dd>
+  <dd>${h.external_link(ctx.github_link)}</dd>
   % endif
 </dl>
 

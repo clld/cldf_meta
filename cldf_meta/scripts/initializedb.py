@@ -1,7 +1,6 @@
 import collections
 import unicodedata
 import sys
-from itertools import chain
 
 import sqlalchemy
 
@@ -42,7 +41,8 @@ def make_zenodo_concepts(cldf_contributions):
                 id=concept_id,
                 name=contrib['Name'],
                 doi=contrib['Concept_DOI'],
-                zenodo_link=f'https://zenodo.org/records/{concept_id}')
+                zenodo_link=f'https://zenodo.org/records/{concept_id}',
+                zenodo_id=concept_id)
     return zenodo_concepts
 
 

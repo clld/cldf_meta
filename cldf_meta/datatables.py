@@ -1,6 +1,8 @@
+from sqlalchemy import Integer
 from sqlalchemy.sql.expression import case
 
 from clld.db.models import common
+from clld.db.meta import DBSession
 from clld.web import datatables
 from clld.web.datatables.base import LinkCol, Col, LinkToMapCol, DataTable
 from clld.web.datatables.contribution import ContributorsCol
@@ -15,6 +17,7 @@ from cldf_meta import models
 
 class CountCol(Col):
     __kw__ = {
+        'bSearchable': False,
         'input_size': 'mini',
         'sClass': 'right'}
 
@@ -83,6 +86,9 @@ class ZenodoLinkCol(Col):
         else:
             return ''
 
+    def order(self):
+        return self.model_col.cast(Integer)
+
 
 class UnitCol(Col):
 
@@ -118,7 +124,10 @@ class CLDFDatasets(DataTable):
         #    ^ nah, that doesn't work -- ord is about multiple datasets in *the
         #      same record*
         ord_col = OrdCol(self, 'ord', sTitle='Number')
-        module = Col(self, 'module')
+        module_choices = sorted(
+            choice
+            for choice, in DBSession.query(models.CLDFDataset.module).distinct())
+        module = Col(self, 'module', choices=module_choices)
         language_count = CountCol(
             self, 'language_count', sTitle='#&#160;Languages',
             model_col=models.CLDFDataset.language_count)
@@ -171,8 +180,9 @@ class Contributions(datatables.Contributions):
     def col_defs(self):
         name = LinkCol(self, 'name')
         people = ContributorsCol(self, 'contributor')
-        version = Col(self, 'version')
-        doi = DOICol(self, 'doi', sTitle='DOI')
+        version = Col(self, 'version', model_col=models.ZenodoRecord.version)
+        doi = DOICol(
+            self, 'doi', sTitle='DOI', model_col=models.ZenodoRecord.doi)
         # TODO: show record number instead of name?
         concept = LinkCol(
             self, 'concept',
@@ -268,7 +278,9 @@ class ZenodoConcepts(DataTable):
         return query
 
     def col_defs(self):
-        zenodo_id = ZenodoLinkCol(self, 'zenodo_id', sTitle='Zenodo ID')
+        zenodo_id = ZenodoLinkCol(
+            self, 'zenodo_id', sTitle='Zenodo ID',
+            model_col=models.ZenodoConcept.zenodo_id)
         name = LinkCol(self, 'name')
         doi = DOICol(self, 'id', sTitle='DOI')
         # TODO: count individual records
