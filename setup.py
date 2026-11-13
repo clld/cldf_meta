@@ -12,7 +12,7 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
     ],
     author='Johannes Englisch',
-    author_email='johannes_englisch@t-online.de',
+    author_email='johannes_englisch@eva.mpg.de',
     url='meta.clld.org',
     keywords='web pyramid pylons',
     packages=find_packages(),
