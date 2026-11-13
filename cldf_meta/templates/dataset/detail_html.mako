@@ -1,4 +1,5 @@
 <%inherit file="../home_comp.mako"/>
+<%block name="title">Welcome</%block>
 
 <h2>Welcome to the CLDF Meta Database<sup><i>beta</i></sup></h2>
 
@@ -15,6 +16,11 @@
   on Github.
   The source code of the web app is on Github as well; you can find it under
   ${h.external_link('https://github.com/clld/cldf_meta')}.
+</p>
+
+<p>
+  If you want to know more about the ins and outs of the project, have a look at
+  <a href="${request.route_url('overview')}">the overview</a>.
 </p>
 
 <h3>How to cite this project</h3>

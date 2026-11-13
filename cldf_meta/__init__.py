@@ -79,4 +79,8 @@ def main(_global_config, **settings):
     config.register_resource(
         'zenodoconcept', models.ZenodoConcept, IZenodoConcept, with_index=True)
 
+    config.add_page('overview')
+    home_comp = ['overview', *config.get_settings()['home_comp']]
+    config.add_settings(home_comp=home_comp)
+
     return config.make_wsgi_app()
